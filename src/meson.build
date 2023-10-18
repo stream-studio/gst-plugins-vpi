@@ -20,14 +20,18 @@ deepstream_dep = declare_dependency(
       )
 
 cuda_dep = dependency('cuda')
+gstreamer_base_dep = dependency('gstreamer-plugins-base-1.0')
+gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
+
 
 vpi_sources = [
 'vpi/gstvpi.c',
+'vpi/gstvpibasetransform.c',
 ]
 
 vpi = library('gstvpi',
     vpi_sources,
-    dependencies : [gst_dep, cuda_dep, deepstream_dep],
+    dependencies : [gst_dep, cuda_dep, deepstream_dep, gstreamer_base_dep, gstreamer_pbutils_dep],
     c_args: plugin_c_args,
     install : true,
     install_dir : plugins_install_dir,
